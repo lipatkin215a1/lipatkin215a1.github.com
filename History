@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
+<title>AC/DC (оценён ведущими браузерами страны)</title>
+<style type="text/css">
+  body{background-color:#dd0000}
+	h1{color:#ffd700;font-size:45pt;text-align:center}
+	#a1{color:#ffd700;font-size:18pt;text-align:center;background:#cd5c5c;padding:35px}
+	#a2{text-align:center}
+	p{color:#ffd700;font-size:15pt;text-align:justify}
+	a:hover{color:#ffd700; text-decoration:none}
+	a:visited{color:#ffd700; text-decoration:none}
+	a:link{color:#ffd700; text-decoration:none}
+</style>
+</head>
+
+<body>
+
+<div class="container row">
+<h1 class="col span_12">AC/DC</h1>
+</div>
+
+<div class="container row">
+<h2 class="col span_4" id="a1" onmouseover="this.style.background='#dc143c';" onmouseout="this.style.background='#cd5c5c';"><a href="History.html">История создания</a></h2>
+<h2 class="col span_4" id="a1" onmouseover="this.style.background='#dc143c';" onmouseout="this.style.background='#cd5c5c';"><a href="Discography.html">Дискография</a></h2>
+<h2 class="col span_4" id="a1" onmouseover="this.style.background='#dc143c';" onmouseout="this.style.background='#cd5c5c';"><a href="Concerts.html">Концерты</a></h2>
+</div>
+
+<div>
+<img src="ACDC.jpg" class="col span_4">
+<div class="col span_4">
+<h2 id="a2">Название</h2>
+<p>«AC/DC» — аббревиатура от «ток переменный/ток постоянный» (англ. «alternating current/direct current») .
+ Старшая сестра Малколма и Ангуса Янгов, Маргарет предложила название для группы после того, как увидела надпись «AC/DC» на задней стороне швейной машинки (кстати, именно Маргарет предложила Ангусу выступать на сцене в школьной форме).</p>
+<h2 id="a2">История создания группы</h2>
+<p>Братья Ангус (родился 31 марта 1955 года; по требованию компании Atlantic Records годом рождения Ангуса официально указывался неверный 1959), Малколм (родился 6 января 1953 года) и Джордж Янг (George Young) родились в Глазго (Шотландия), но в 1963 году вместе с большей частью семьи уехали в Сидней. Джордж начал играть на гитаре первым и стал членом самой успешной австралийской группы 1960-х, The Easybeats. Это была первая местная рок-группа, которая выпустила хит международного масштаба — «Friday on My Mind» в 1966 году. Малколм вскоре последовал по стопам брата, став гитаристом группы из Ньюкасла The Velvet Underground (не следует путать с нью-йоркским коллективом The Velvet Underground).</p>
+</div>
+<img src="ACDC2.jpg" class="col span_4">
+</div>
+<div class="col span_12" id="a1" onmouseover="this.style.background='#dc143c';" onmouseout="this.style.background='#cd5c5c';">
+<a href="index.html">Вернуться на главную страницу</a>
+</div>
+
+</body>
+</html>

@@ -4,34 +4,54 @@
 <link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
 <title>AC/DC (оценён ведущими браузерами страны)</title>
 <style type="text/css">
-	body{background-color:#dd0000}
-	h1{color:#ffd700;font-size:45pt;text-align:center}
-	#a1{color:#ffd700;font-size:18pt;text-align:center;background:#cd5c5c;padding:35px}
+	body{background-image:url("Fon.jpg")}
+	h1{color:#ffd700;font-size:45pt;text-align:center;padding:25px;background-color:#000}
+	#bl{color:#ffd700;font-size:18pt;text-align:center;background-color:#cd5c5c;padding:35px}
+	#bl:hover{background-color:#ff2e00}
 	p{color:#ffd700;font-size:15pt;text-align:justify}
+	#tx{background-color:#000;padding:10px}
 	a:hover{color:#ffd700; text-decoration:none}
 	a:visited{color:#ffd700; text-decoration:none}
 	a:link{color:#ffd700; text-decoration:none}
 </style>
+<!--
+<script type="text/javascript">
+function toggle(sDivId)
+{
+var oDiv=document.getElementById(sDivId)
+oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
+}
+</script>//-->
 </head>
 
 <body>
 
-
 <div class="container row">
+
+<div  class="row">
 <h1 class="col span_12">AC/DC</h1>
 </div>
 
-<div class="container row">
-<h2 class="col span_4" id="a1" onmouseover="this.style.background='#dc143c';" onmouseout="this.style.background='#cd5c5c';"><a href="History.html">История создания</a></h2>
-<h2 class="col span_4" id="a1" onmouseover="this.style.background='#dc143c';" onmouseout="this.style.background='#cd5c5c';"><a href="Discography.html">Дискография</a></h2>
-<h2 class="col span_4" id="a1" onmouseover="this.style.background='#dc143c';" onmouseout="this.style.background='#cd5c5c';"><a href="Concerts.html">Концерты</a></h2>
+<div class="row">
+<a href="History.html" class="col span_4"><h2 id="bl">История создания</h2></a>
+<a href="Discography.html" class="col span_4"><h2 id="bl">Дискография</h2></a>
+<a href="Concerts.html" class="col span_4"><h2 id="bl">Концерты</h2></a>
 </div>
 
-<div>
+<div class="row">
 <img src="ACDC.jpg" class="col span_4">
-<p class="col span_4">Добро пожаловать на неофициальный сайт группы AC/DC. Здесь представлена информация о создании группы, дискография и различные видео.</p>
+<p class="col span_4" id="tx">Добро пожаловать на неофициальный сайт группы AC/DC. Здесь представлена информация о создании группы, дискография и различные видео.</p>
 <img src="ACDC2.jpg" class="col span_4">
 </div>
+<!--
+<div class="row" style="background-color:blue;color:white;cursor:pointer" onclick="toggle('divContent1')">
+Жми сюда, если хочешь узнать, кем ты был в предыдущей жизни!
+</div>
 
+<div style="border:3px solid blue;height:100px;padding:10px;color:white" id="divContent1">
+Овцой)
+</div>
+//-->
+</div>
 </body>
 </html>

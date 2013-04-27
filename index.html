@@ -1,10 +1,20 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<link href="style.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
 <title>AC/DC (оценён ведущими браузерами страны)</title>
-<!--
-<script type="text/javascript">
+<style type="text/css">
+#bdy{background-image:url(Fon2.jpg)}
+h1{color:#ffd700;font-size:45pt;text-align:center;padding:25px;background-color:#000}
+#bl{color:#ffd700;font-size:18pt;text-align:center;background-color:#cd5c5c;padding:35px;border-width:6px;border-style:ridge}
+#bl:hover{background-color:#ff2e00}
+p{color:#ffd700;font-size:15pt;text-align:justify}
+#tx{background-color:#000;padding:10px}
+a:hover{color:#ffd700; text-decoration:none}
+a:visited{color:#ffd700; text-decoration:none}
+a:link{color:#ffd700; text-decoration:none}
+</style>
+<!--<script type="text/javascript">
 function toggle(sDivId)
 {
 var oDiv=document.getElementById(sDivId)
@@ -15,22 +25,26 @@ oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
 
 <body>
 
-<div class="container row">
+<div class="container row" id="bdy">
 
 <div  class="row">
-<h1 class="col span_12">AC/DC</h1>
+<!--<h1 class="col span_12">AC/DC</h1>//-->
+<!--<div class="col span_4" style="position:absolute">&nbsp</div>//-->
+<div ><img src="gitara21.png" class="col span_4"></div>
+<img src="ACDC.png"  class="col span_4">
+<img src="gitara22.png" class="col span_4">
 </div>
 
 <div class="row">
-<a href="History.html" class="col span_4"><h2 id="bl">История создания</h2></a>
+<a href="History.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">История создания</h2></a>
 <a href="Discography.html" class="col span_4"><h2 id="bl">Дискография</h2></a>
 <a href="Concerts.html" class="col span_4"><h2 id="bl">Концерты</h2></a>
 </div>
 
 <div class="row">
-<img src="ACDC.jpg" class="col span_4">
-<p class="col span_4" id="tx">Добро пожаловать на неофициальный сайт группы AC/DC. Здесь представлена информация о создании группы, дискография и различные видео.</p>
-<img src="ACDC2.jpg" class="col span_4">
+<img src="ACDC3.png" class="col span_4">
+<p class="col span_4">Добро пожаловать на неофициальный сайт группы AC/DC. Здесь представлена информация о создании группы, дискография и различные видео.</p>
+<img src="ACDC3.png" class="col span_4">
 </div>
 <!--
 <div class="row" style="background-color:blue;color:white;cursor:pointer" onclick="toggle('divContent1')">
@@ -41,6 +55,7 @@ oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
 Овцой)
 </div>
 //-->
+
 </div>
 </body>
 </html>

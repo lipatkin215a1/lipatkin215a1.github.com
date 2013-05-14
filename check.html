@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!--<!DOCTYPE HTML>
 <html>
 <head>
 <link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
@@ -11,6 +11,7 @@ document.write("Год - "+date.getFullYear()+" ")
 document.write("Месяц - "+date.getMonth()+" ")
 document.write("День - "+date.getDate()+" ")
 </script>
+
 </head>
 
 <body>
@@ -19,5 +20,40 @@ document.write("День - "+date.getDate()+" ")
 
 </div>
 
+</body>
+</html>//-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML CSS Java Script Цифровые часы</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<script type="text/javascript">
+function showTime()
+ {
+  var dat = new Date();
+  var H = '' + dat.getHours();
+  H = H.length<2 ? '0' + H:H;
+  var M = '' + dat.getMinutes();
+  M = M.length<2 ? '0' + M:M;
+  var S = '' + dat.getSeconds();
+  S =S.length<2 ? '0' + S:S;
+  var clock = H + ':' + M + ':' + S;
+  document
+    .getElementById('time_div')
+      .innerHTML=clock;
+  setTimeout(showTime,1000);  // перерисовать 1 раз в сек.
+ }
+</script>
+</head>
+<body>
+<div id="main"> 
+<h3 align=center>HTML CSS Java Script Цифровые часы</h3>
+<h4 align=center>В Internet Explorer есть проблема - нарастает потребляемая память. В остальных браузерах без проблем.</h4>
+<div id="time_div" style="font-size:24pt;color:rgb(0,255,0);font-weight:600;font-family:Verdana;background-color:RGB(128,0,0);margin-left: 40%;width:160px;border:2px solid rgb(250,0,0)">
+</div>
+<script type="text/javascript">
+  showTime();
+</script>
+</div>
 </body>
 </html>

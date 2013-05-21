@@ -5,7 +5,7 @@
 		<title>AC/DC (оценён ведущими браузерами страны)</title>
 		<link rel="stylesheet" href="style.css" type="text/css"/>
 		<script type="text/javascript">
-			function showtime()
+			function show_time()
 			{
 				var mytoday=new Date()
 				var myhours=mytoday.getHours()
@@ -19,8 +19,8 @@
 				var mymonth=mytoday.getMonth()+1
 				mymonth=checktime(mymonth)
 				var myyear=mytoday.getFullYear()
-				document.getElementById('show_time').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
-				setTimeout('showtime()',1000)
+				document.getElementById('showtime').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
+				setTimeout('show_time()',1000)
 			}
 			function checktime(i)
 			{
@@ -28,19 +28,32 @@
 					i='0'+i
 				return i
 			}
+			var birthday=new Date(1973,11,29,23,59,59,999)
 			function DaysToBirthday()
 			{
 				var today=new Date()	//0..11 - месяца
-				birthday=new Date(1973,11,29,23,59,59,999)
 				birthday.setFullYear(today.getFullYear())
 				msPerDay=24*60*60*1000
+				if((birthday.getTime()-today.getTime())/msPerDay<0)
+					birthday.setFullYear(today.getFullYear()+1)
 				daysLeft=(birthday.getTime()-today.getTime())/msPerDay
 				daysLeft=Math.round(daysLeft)
-				document.write("До дня рождения группы осталось "+daysLeft+" дней")
+				if(daysLeft%10<=4)
+					document.write("До дня рождения группы осталось "+daysLeft+" дня")
+				else
+					document.write("До дня рождения группы осталось "+daysLeft+" дней")
+			}
+			function DayOfBirthday()
+			{
+				var weekday=new Array("воскресенье","понедельник","вторник","среду","четверг","пятницу","субботу");
+				if(birthday.getDay==2)
+					document.write("во "+weekday[birthday.getDay()])
+				else
+					document.write("в "+weekday[birthday.getDay()])
 			}
 		</script>
 	</head>
-	<body>
+	<body onload="show_time()">
 		<div class="container row">
 			<div  class="row">
 				<img src="img/gitara21.png" class="col span_4">
@@ -65,12 +78,14 @@
 					<p class="text">«AC/DC» — аббревиатура от «ток переменный/ток постоянный» (англ. «alternating current/direct current») .Старшая сестра Малколма и Ангуса Янгов, Маргарет предложила название для группы после того, как увидела надпись «AC/DC» на задней стороне швейной машинки (кстати, именно Маргарет предложила Ангусу выступать на сцене в школьной форме).</p>
 					<h2 class="a1">История создания группы</h2>
 					<p class="text">Братья Ангус (родился 31 марта 1955 года; по требованию компании Atlantic Records годом рождения Ангуса официально указывался неверный 1959), Малколм (родился 6 января 1953 года) и Джордж Янг (George Young) родились в Глазго (Шотландия), но в 1963 году вместе с большей частью семьи уехали в Сидней. Джордж начал играть на гитаре первым и стал членом самой успешной австралийской группы 1960-х, The Easybeats. Это была первая местная рок-группа, которая выпустила хит международного масштаба — «Friday on My Mind» в 1966 году. Малколм вскоре последовал по стопам брата, став гитаристом группы из Ньюкасла The Velvet Underground (не следует путать с нью-йоркским коллективом The Velvet Underground).</p>
+					<h2 class="a1">Первое выступление</h2>
+					<p class="text">К братьям-гитаристам Малколму (он и инициировал группу) и Ангусу Янгам в ноябре 1973-го добавились вокалист Дейв Эванс (англ. Dave Evans), бас-гитарист Ларри Ван Кридт (англ. Larry van Kriedt) и барабанщик Колин Берджес (англ. Colin Burgess). Дебют квинтета состоялся <script type="text/javascript">DayOfBirthday()</script> 30 декабря 1973 года в сиднейском баре Chequers. С этого дня наш сайт празднует день рождения группы AC/DC.</p>
 				</div>
 				<img src="img/ACDC3.png" class="col span_4">
 			</div>
 			
 			<div class="row">
-				<p id="show_time" class="date"/>
+				<p id="showtime" class="date"/>
 			</div>
 			
 			<div class="row">

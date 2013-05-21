@@ -10,7 +10,7 @@
 				var oDiv=document.getElementById(sDivId)
 				oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
 			}
-			function showtime()
+			function show_time()
 			{
 				var mytoday=new Date()
 				var myhours=mytoday.getHours()
@@ -24,8 +24,8 @@
 				var mymonth=mytoday.getMonth()+1
 				mymonth=checktime(mymonth)
 				var myyear=mytoday.getFullYear()
-				document.getElementById('show_time').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
-				setTimeout('showtime()',1000)
+				document.getElementById('showtime').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
+				setTimeout('show_time()',1000)
 			}
 			function checktime(i)
 			{
@@ -39,13 +39,18 @@
 				birthday=new Date(1973,11,29,23,59,59,999)
 				birthday.setFullYear(today.getFullYear())
 				msPerDay=24*60*60*1000
+				if((birthday.getTime()-today.getTime())/msPerDay<0)
+					birthday.setFullYear(today.getFullYear()+1)
 				daysLeft=(birthday.getTime()-today.getTime())/msPerDay
 				daysLeft=Math.round(daysLeft)
-				document.write("До дня рождения группы осталось "+daysLeft+" дней")
+				if(daysLeft%10<=4)
+					document.write("До дня рождения группы осталось "+daysLeft+" дня")
+				else
+					document.write("До дня рождения группы осталось "+daysLeft+" дней")
 			}
 		</script>
 	</head>
-	<body>
+	<body onload="show_time()">
 		<div class="container row">
 			<div  class="row">
 				<img src="img/gitara21.png" class="col span_4">
@@ -85,7 +90,7 @@
 			</div>
 			
 			<div class="row">
-				<p id="show_time" style="text-align:center;font-size:20pt;color:#ffcc00;margin:0px"/>
+				<p id="showtime" class="date"/>
 			</div>
 
 			<div class="row">

@@ -1,27 +1,39 @@
-<!--<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
-<head>
-<link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
-<title>Страничка для проверки разных гаджетов</title>
+	<head>
+		<link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
+		<title>Страничка для проверки разных гаджетов</title>
+		<script type="text/javascript">
+			function disp_prompt()
+			{
+				var name=prompt("Please enter your name","Harry Potter")
+				if(name!=null && name!="")
+				{
+					document.write("Hello, "+name+"! How are you today?")
+				}
+			}
+			function disp_confirm()
+			{
+				var r=confirm("Press a button")
+				if(r==true)
+				{
+					document.write("You pressed Ok!")
+				}
+				else
+				{
+					document.write("You pressed Cancel!")
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container row">
+			<input type="button" onclick="disp_confirm()" value="Display a prompt box">
+		</div>
+	</body>
+</html>
 
-
-<script type="text/javascript">
-var date=new Date()
-document.write("Год - "+date.getFullYear()+" ")
-document.write("Месяц - "+date.getMonth()+" ")
-document.write("День - "+date.getDate()+" ")
-</script>
-
-</head>
-
-<body>
-
-<div class="container row">
-
-</div>
-
-</body>
-</html>//-->
+<!--
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,4 +68,4 @@ function showTime()
 </script>
 </div>
 </body>
-</html>
+</html>//-->

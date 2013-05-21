@@ -1,75 +1,96 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
-<title>AC/DC (оценён ведущими браузерами страны)</title>
-<link rel="stylesheet" href="style.css" type="text/css"/>
+	<head>
+		<link rel="stylesheet" href="responsive-gs-12col.css" type="text/css"/>
+		<title>AC/DC (оценён ведущими браузерами страны)</title>
+		<link rel="stylesheet" href="style.css" type="text/css"/>
+		<script type="text/javascript">
+			function toggle(sDivId)
+			{
+				var oDiv=document.getElementById(sDivId)
+				oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
+			}
+			function show_time()
+			{
+				var mytoday=new Date()
+				var myhours=mytoday.getHours()
+				myhours=checktime(myhours)
+				var mymin=mytoday.getMinutes()
+				mymin=checktime(mymin)
+				var mysec=mytoday.getSeconds()
+				mysec=checktime(mysec)
+				var mydate=mytoday.getDate()
+				mydate=checktime(mydate)
+				var mymonth=mytoday.getMonth()+1
+				mymonth=checktime(mymonth)
+				var myyear=mytoday.getFullYear()
+				document.getElementById('showtime').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
+				setTimeout('show_time()',1000)
+			}
+			function checktime(i)
+			{
+				if(i<10)
+					i='0'+i
+				return i
+			}
+			function DaysToBirthday()
+			{
+				var today=new Date()	//0..11 - месяца
+				birthday=new Date(1973,11,29,23,59,59,999)
+				birthday.setFullYear(today.getFullYear())
+				msPerDay=24*60*60*1000
+				if((birthday.getTime()-today.getTime())/msPerDay<0)
+					birthday.setFullYear(today.getFullYear()+1)
+				daysLeft=(birthday.getTime()-today.getTime())/msPerDay
+				daysLeft=Math.round(daysLeft)
+				if(daysLeft%10<=4)
+					document.write("До дня рождения группы осталось "+daysLeft+" дня")
+				else
+					document.write("До дня рождения группы осталось "+daysLeft+" дней")
+			}
+		</script>
+	</head>
+	<body onload="show_time()">
+		<div class="container row">
+			<div  class="row">
+				<img src="img/gitara21.png" class="col span_4">
+				<img src="img/ACDC.png"  class="col span_4">
+				<img src="img/gitara22.png" class="col span_4">
+			</div>
 
-<script type="text/javascript">
-function toggle(sDivId)
-{
-var oDiv=document.getElementById(sDivId)
-oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
-}
+			<div class="row" style="text-align:center;font-size:20pt;color:#ffcc00;margin:0px">
+				<script type="text/javascript">
+					DaysToBirthday()
+				</script>
+			</div>
 
-function showTime()
- {
-  var dat = new Date();
-  var H = '' + dat.getHours();
-  H = H.length<2 ? '0' + H:H;
-  var M = '' + dat.getMinutes();
-  M = M.length<2 ? '0' + M:M;
-  var S = '' + dat.getSeconds();
-  S =S.length<2 ? '0' + S:S;
-  var clock = H + ':' + M + ':' + S;
-  document
-    .getElementById('time_div')
-      .innerHTML=clock;
-  setTimeout(showTime,1000);  // перерисовать 1 раз в сек.
- }
+			<div class="row">
+				<a href="History.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">История создания</h2></a>
+				<a href="Discography.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Дискография</h2></a>
+				<a href="#" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Концерты</h2></a>
+			</div>
 
-</script>
-</head>
+			<div class="row">
+				<img src="img/ACDC3.png" class="col span_4">
+				<div class="col span_4">
+					<p class="over" onclick="toggle('Content1')">AC/DC - Back To Black</p>
+					<video width="400" height="300" controls poster="video/back.jpg" id="Content1" style="display:none">
+						<source src="video/back.avi" type='video/avi; codecs="theora, vorbis"'>
+						<source src="video/back.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+						<source src="video/back.webm" type='video/webm; codecs="vp8, vorbis"'>
+						<source src="video/back.ogv" type='video/ogg; codecs="theora, vorbis"'>
+					</video>
+				</div>
+				<img src="img/ACDC3.png" class="col span_4">
+			</div>
+			
+			<div class="row">
+				<p id="showtime" class="date"/>
+			</div>
 
-<body>
-<div class="container row">
-
-<div  class="row">
-<img src="img/gitara21.png" class="col span_4">
-<img src="img/ACDC.png"  class="col span_4">
-<img src="img/gitara22.png" class="col span_4">
-</div>
-
-<div id="time_div" style="font-size:24pt;color:#ff9218;font-weight:600;font-family:Modern No. 20;margin-left: 45%;width:160px;">
-</div>
-<script type="text/javascript">
-  showTime();
-</script>
-
-<div class="row">
-<a href="History.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">История создания</h2></a>
-<a href="Discography.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Дискография</h2></a>
-<a href="#" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Концерты</h2></a>
-</div>
-
-<div class="row">
-<img src="img/ACDC3.png" class="col span_4">
-<div class="col span_4">
-<p class="over" onclick="toggle('Content1')">AC/DC - Back To Black</p>
-  <video width="400" height="300" controls poster="video/back.jpg" id="Content1" style="display:none">
-    <source src="video/back.avi" type='video/avi; codecs="theora, vorbis"'>
-    <source src="video/back.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-    <source src="video/back.webm" type='video/webm; codecs="vp8, vorbis"'>
-	<source src="video/back.ogv" type='video/ogg; codecs="theora, vorbis"'>
-  </video>
-</div>
-<img src="img/ACDC3.png" class="col span_4">
-</div>
-
-<div class="row">
-<a href="index.html" class="col span_12"><p id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Вернуться на главную страницу</p></a>
-</div>
-
-</div>
-</body>
+			<div class="row">
+				<a href="index.html" class="col span_12"><p id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Вернуться на главную страницу</p></a>
+			</div>
+		</div>
+	</body>
 </html>

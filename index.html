@@ -20,7 +20,7 @@
 					welcome='Спокойной ночи'}
 				document.write(welcome+', ')
 			}
-			function showtime()
+			function show_time()
 			{
 				var mytoday=new Date()
 				var myhours=mytoday.getHours()
@@ -34,8 +34,8 @@
 				var mymonth=mytoday.getMonth()+1
 				mymonth=checktime(mymonth)
 				var myyear=mytoday.getFullYear()
-				document.getElementById('show_time').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
-				setTimeout('showtime()',1000)
+				document.getElementById('showtime').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
+				setTimeout('show_time()',1000)
 			}
 			function checktime(i)
 			{
@@ -49,13 +49,35 @@
 				birthday=new Date(1973,11,29,23,59,59,999)
 				birthday.setFullYear(today.getFullYear())
 				msPerDay=24*60*60*1000
+				if((birthday.getTime()-today.getTime())/msPerDay<0)
+					birthday.setFullYear(today.getFullYear()+1)
 				daysLeft=(birthday.getTime()-today.getTime())/msPerDay
 				daysLeft=Math.round(daysLeft)
-				document.write("До дня рождения группы осталось "+daysLeft+" дней")
+				if(daysLeft%10<=4)
+					document.write("До дня рождения группы осталось "+daysLeft+" дня")
+				else
+					document.write("До дня рождения группы осталось "+daysLeft+" дней")
+			}
+			var nameuser=""
+			function disp_prompt()
+			{
+				nameuser=prompt("Пожалуйста, введите своё имя:","Мартин Гарднер")
+				var r=confirm("Вы хотите, чтобы ваше имя присутствовало на сайте?")
+				if(r==true)
+				{
+					show_name()
+				}
+			}
+			function show_name()
+			{
+				if(nameuser!=null && nameuser!="" && nameuser!=" ")
+				{
+					document.getElementById('showname').innerHTML=nameuser+", "
+				}
 			}
 		</script>
 	</head>
-	<body onload="showtime()">
+	<body onload="show_time()">
 		<div class="container row">
 			<div class="row">
 				<img src="img/gitara21.png" class="col span_4">
@@ -68,6 +90,10 @@
 			</div>
 			
 			<div class="row">
+				<div class="col span_12" style="text-align:center"><input type="button" onclick="disp_prompt()" value="Войти под именем"></div>
+			</div>
+			
+			<div class="row">
 				<a href="History.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">История создания</h2></a>
 				<a href="Discography.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Дискография</h2></a>
 				<a href="Concerts.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Концерты</h2></a>
@@ -76,13 +102,13 @@
 			<div class="row">
 				<img src="img/ACDC3.png" class="col span_4">
 				<div class="col span_4">
-					<p class="text"><script type="text/javascript">Welcometohell();</script>мы рады вас приветствовать на неофициальном сайте группы AC/DC. Здесь представлена информация о создании группы, дискография и концерты.</p>
+					<div class="text"><p class="text" style="display:inline"><script type="text/javascript">Welcometohell();</script></p><p class="text" style="display:inline" id="showname"/><p class="text" style="display:inline">мы рады вас приветствовать на неофициальном сайте группы AC/DC. Здесь представлена информация о создании группы, дискография и концерты.</p></div>
 				</div>
 				<img src="img/ACDC3.png" class="col span_4">
 			</div>
 			
 			<div class="row">
-				<p id="show_time" class="date"/>
+				<p id="showtime" class="date"/>
 			</div>
 		</div>
 	</body>

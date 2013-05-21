@@ -58,6 +58,14 @@
 				else
 					document.write("До дня рождения группы осталось "+daysLeft+" дней")
 			}
+			function DayOfBirthday()
+			{
+				var weekday=new Array("воскресенье","понедельник","вторник","среду","четверг","пятницу","субботу");
+				if(birthday.getDay==2)
+					document.write("во "+weekday[birthday.getDay()])
+				else
+					document.write("в "+weekday[birthday.getDay()])
+			}
 			var nameuser=""
 			function disp_prompt()
 			{
@@ -74,6 +82,25 @@
 				{
 					document.getElementById('showname').innerHTML=nameuser+", "
 				}
+			}
+			var contents=new Array('Content1','Content2','Content3','Content4')
+			var ncont=4;
+			function toggle(sDivId)
+			{
+				var oDiv=document.getElementById(sDivId)
+				oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
+				oDiv=document.getElementById('ContentR')
+				if(sDivId==contents[0])
+					oDiv.style.display="none"
+				else
+					oDiv.style.display="block"
+				if(sDivId.length==contents[1].length)
+					for(var i=0;i<ncont;i++)
+						if(contents[i]!=sDivId)
+						{
+							oDiv=document.getElementById(contents[i])
+							oDiv.style.display="none"
+						}
 			}
 		</script>
 	</head>
@@ -94,21 +121,56 @@
 			</div>
 			
 			<div class="row">
-				<a href="History.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">История создания</h2></a>
-				<a href="Discography.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Дискография</h2></a>
-				<a href="Concerts.html" class="col span_4"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Концерты</h2></a>
+				<div class="col span_4" onclick="toggle('Content2')"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">История создания</h2></div>
+				<div class="col span_4" onclick="toggle('Content3')"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Дискография</h2></div>
+				<div class="col span_4" onclick="toggle('Content4')"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Концерты</h2></div>
 			</div>
 
 			<div class="row">
 				<img src="img/ACDC3.png" class="col span_4">
-				<div class="col span_4">
+				<div class="col span_4" id="Content1">
 					<div class="text"><p class="text" style="display:inline"><script type="text/javascript">Welcometohell();</script></p><p class="text" style="display:inline" id="showname"/><p class="text" style="display:inline">мы рады вас приветствовать на неофициальном сайте группы AC/DC. Здесь представлена информация о создании группы, дискография и концерты.</p></div>
+				</div>
+				<div class="col span_4" id="Content2" style="display:none">
+					<h2 class="a1">Название</h2>
+					<p class="text">«AC/DC» — аббревиатура от «ток переменный/ток постоянный» (англ. «alternating current/direct current») .Старшая сестра Малколма и Ангуса Янгов, Маргарет предложила название для группы после того, как увидела надпись «AC/DC» на задней стороне швейной машинки (кстати, именно Маргарет предложила Ангусу выступать на сцене в школьной форме).</p>
+					<h2 class="a1">История создания группы</h2>
+					<p class="text">Братья Ангус (родился 31 марта 1955 года; по требованию компании Atlantic Records годом рождения Ангуса официально указывался неверный 1959), Малколм (родился 6 января 1953 года) и Джордж Янг (George Young) родились в Глазго (Шотландия), но в 1963 году вместе с большей частью семьи уехали в Сидней. Джордж начал играть на гитаре первым и стал членом самой успешной австралийской группы 1960-х, The Easybeats. Это была первая местная рок-группа, которая выпустила хит международного масштаба — «Friday on My Mind» в 1966 году. Малколм вскоре последовал по стопам брата, став гитаристом группы из Ньюкасла The Velvet Underground (не следует путать с нью-йоркским коллективом The Velvet Underground).</p>
+					<h2 class="a1">Первое выступление</h2>
+					<p class="text">К братьям-гитаристам Малколму (он и инициировал группу) и Ангусу Янгам в ноябре 1973-го добавились вокалист Дейв Эванс (англ. Dave Evans), бас-гитарист Ларри Ван Кридт (англ. Larry van Kriedt) и барабанщик Колин Берджес (англ. Colin Burgess). Дебют квинтета состоялся <script type="text/javascript">DayOfBirthday()</script> 30 декабря 1973 года в сиднейском баре Chequers. С этого дня наш сайт празднует день рождения группы AC/DC.</p>
+				</div>
+				<div class="col span_4" id="Content3" style="display:none">
+					<p class="over" onclick="toggle('Content31')">AC/DC - Back To Black</p>
+					<audio controls id="Content31" style="display:none"> 
+						<source src="audio/music.ogg" type='audio/ogg; codecs=vorbis'>
+						<source src="audio/music.mp3" type="audio/mpeg">
+						<source src="audio/music.wav" type="audio/wav">
+					</audio>
+					<p class="over" onclick="toggle('Content32')">AC/DC - Ruff Stuff</p>
+					<audio controls id="Content32" style="display:none"> 
+						<source src="audio/acdc - ruff stuff.ogg" type='audio/ogg; codecs=vorbis'>
+						<source src="audio/acdc - ruff stuff.mp3" type="audio/mpeg">
+						<source src="audio/acdc - ruff stuff.wav" type="audio/wav">
+					</audio>
+				</div>
+				<div class="col span_4" id="Content4" style="display:none">
+					<p class="over" onclick="toggle('Content41')">AC/DC - Back To Black</p>
+					<video width="400" height="300" controls poster="video/back.jpg" id="Content41" style="display:none">
+						<source src="video/back.avi" type='video/avi; codecs="theora, vorbis"'>
+						<source src="video/back.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+						<source src="video/back.webm" type='video/webm; codecs="vp8, vorbis"'>
+						<source src="video/back.ogv" type='video/ogg; codecs="theora, vorbis"'>
+					</video>
 				</div>
 				<img src="img/ACDC3.png" class="col span_4">
 			</div>
 			
 			<div class="row">
 				<p id="showtime" class="date"/>
+			</div>
+			
+			<div class="row">
+				<div class="col span_12" onclick="toggle('Content1')" id="ContentR" style="display:none"><p id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Вернуться на главную страницу</p></div>
 			</div>
 		</div>
 	</body>

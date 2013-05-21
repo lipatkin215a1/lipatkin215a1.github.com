@@ -1,6 +1,6 @@
 body{background-image:url(fon22.jpg)}
 #bl{color:#ffd700;font-size:18pt;text-align:center;background-image:url(Кирпич2.gif);background-repeat:repeat;padding:35px;border-color:#c4c4c4;border-width:15px;border-style:ridge}
-#bl:hover{background-image:url(Кирпич.gif);background-repeat:repeat}
+#bl:hover{background-image:url(Кирпич.gif);background-repeat:repeat;cursor:pointer}
 h2.a1{text-indent:10mm;font-style:italic;color:#ffd700}
 .text{text-indent:10mm;color:#ffd700;font-size:15pt;text-align:justify}
 p.over{cursor:pointer;text-indent:10mm;color:#ffd700;font-size:15pt;text-align:justify}

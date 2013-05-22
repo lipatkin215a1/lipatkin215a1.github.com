@@ -88,19 +88,22 @@
 			function toggle(sDivId)
 			{
 				var oDiv=document.getElementById(sDivId)
-				oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
-				oDiv=document.getElementById('ContentR')
-				if(sDivId==contents[0])
-					oDiv.style.display="none"
-				else
-					oDiv.style.display="block"
-				if(sDivId.length==contents[1].length)
-					for(var i=0;i<ncont;i++)
-						if(contents[i]!=sDivId)
-						{
-							oDiv=document.getElementById(contents[i])
-							oDiv.style.display="none"
-						}
+				if(sDivId.length==contents[0].length && oDiv.style.display!="block" || sDivId.length>contents[0].length)
+				{
+					oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
+					oDiv=document.getElementById('ContentR')
+					if(sDivId==contents[0])	//важен первый элемент
+						oDiv.style.display="none"
+					else
+						oDiv.style.display="block"
+					if(sDivId.length==contents[0].length)//неважно с каким сравнивать длину
+						for(var i=0;i<ncont;i++)
+							if(contents[i]!=sDivId)
+							{
+								oDiv=document.getElementById(contents[i])
+								oDiv.style.display="none"
+							}
+				}
 			}
 		</script>
 	</head>

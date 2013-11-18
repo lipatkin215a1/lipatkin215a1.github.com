@@ -5,72 +5,48 @@
 		<title>Страничка для проверки разных гаджетов</title>
 		<style type="text/css">
 			#navcontainer ul{margin:0;padding:0;list-style-type:none;text-align:center}
-			#navcontainer ul li{display:inline}
-			#navcontainer ul li a{margin:3em;text-decoration:none;padding:.2em 1em;color:#fff;background-color:#036}
+			#navcontainer ul li{display:inline;margin:0}
+			#navcontainer ul li a{text-decoration:none;padding:1em 2em;color:#fff;background-color:#036}
 			#navcontainer ul li a:hover{color:#fff;background-color:#369}
+			
+			#navcontainerdown ul{margin:1em 0 0 0;padding:0;list-style-type:none;text-align:center}
+			#navcontainerdown ul li{display:block;margin:1em 0}
+			#navcontainerdown ul li a{text-decoration:none;width:190px;color:#fff;background-color:#036}
+			#navcontainerdown ul li a:hover{color:#fff;background-color:#369}
 		</style>
 		<script type="text/javascript">
-			function disp_prompt()
+			function timedText()
 			{
-				var name=prompt("Please enter your name","Harry Potter")
-				if(name!=null && name!="")
-				{
-					document.write("Hello, "+name+"! How are you today?")
-				}
+				var x=document.getElementById('txt')
+				var t1=setTimeout(function(){x.value="1 seconds"},1000)
+				var t2=setTimeout(function(){x.value="2 seconds"},2000)
+				var t3=setTimeout(function(){x.value="3 seconds"},3000)
+				var t1=setTimeout(function(){x.value="4 seconds"},4000)
+				var t2=setTimeout(function(){x.value="5 seconds"},5000)
+				var t3=setTimeout(function(){x.value="6 seconds"},6000)
 			}
-			function disp_confirm()
+			function toggle(sDivId)
 			{
-				var r=confirm("Press a button")
-				if(r==true)
-				{
-					document.write("You pressed Ok!")
-				}
-				else
-				{
-					document.write("You pressed Cancel!")
-				}
+				var oDiv=document.getElementById(sDivId)
+				oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
 			}
 		</script>
 	</head>
 	<body>
 		<div class="container row" id="navcontainer">
+			<form>
+				<input type="button" value="Display timed text:" onclick="timedText()">
+				<input type="text" id="txt">
+			</form>
+			<br>
 			<ul>
-				<li>
-					<a href="#">one</a>
-				</li>
-				<li>
-					<a href="#">two</a>
-				</li>
-				<li>
-					<a href="#">one</a>
-				</li>
-				<li>
-					<a href="#">two</a>
-				</li>
-				<li>
-					<a href="#">one</a>
-				</li>
-				<li>
-					<a href="#">two</a>
-				</li>
-				<li>
-					<a href="#">one</a>
-				</li>
-				<li>
-					<a href="#">two</a>
-				</li>
-				<li>
-					<a href="#">one</a>
-				</li>
-				<li>
-					<a href="#">two</a>
-				</li>
-				<li>
-					<a href="#">one</a>
-				</li>
-				<li>
-					<a href="#">two</a>
-				</li>
+				<li onmouseover="toggle('Content1')" onmouseout="toggle('Content1')"><a href="#">Great</a></li>
+				<div id="Content1" style="display:none"><div id="navcontainerdown">
+					<ul>
+						<li><a href="#">Music</a></li>
+						<li><a href="#">Comedy</a></li>
+					</ul>
+				</div></div>
 			</ul>
 		</div>
 	</body>

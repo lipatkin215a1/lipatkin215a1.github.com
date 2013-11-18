@@ -53,10 +53,14 @@
 					birthday.setFullYear(today.getFullYear()+1)
 				daysLeft=(birthday.getTime()-today.getTime())/msPerDay
 				daysLeft=Math.round(daysLeft)
-				if(daysLeft%10<=4)
-					document.write("До дня рождения группы осталось "+daysLeft+" дня")
+				var text=""
+				if(daysLeft%10==1)
+					text=" день"
+				else if(daysLeft%10<=4)
+					text=" дня"
 				else
-					document.write("До дня рождения группы осталось "+daysLeft+" дней")
+					text=" дней"
+				document.write("До дня рождения группы осталось "+daysLeft+text)
 			}
 			function DayOfBirthday()
 			{

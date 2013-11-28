@@ -5,113 +5,310 @@
 		<title>AC/DC (оценён ведущими браузерами страны)</title>
 		<link rel="stylesheet" href="style.css" type="text/css"/>
 		<script type="text/javascript">
+				var kolPictureInGalery=9;		//количество изображений в галереи
+				//var masPicture=new Array('acdc','acdc_music','acdc_red','acdc_storm','highway_to_hell','acdc26','black-ice','black-in-black','gold_acdc');
+			
+			/*Функция приветствия пользователя*/
 			function Welcometohell()
 			{
-				var date=new Date()
-				var welcome=''
-				var myhours=date.getHours()
+				var date=new Date();
+				var welcome='';
+				var myhours=date.getHours();	//узнаёт текущее время в часах
 				if(myhours>16){
-					welcome='Добрый вечер'}
+					welcome='Добрый вечер';}
 				else if(myhours>12){
-					welcome='Добрый день'}
+					welcome='Добрый день';}
 				else if(myhours>5){
-					welcome='Доброе утро'}
+					welcome='Доброе утро';}
 				else{
-					welcome='Спокойной ночи'}
-				document.write(welcome+', ')
+					welcome='Спокойной ночи';}
+				document.write(welcome+', ');
 			}
+			/*Функция показывает текущее время*/
 			function show_time()
 			{
-				var mytoday=new Date()
-				var myhours=mytoday.getHours()
-				myhours=checktime(myhours)
-				var mymin=mytoday.getMinutes()
-				mymin=checktime(mymin)
-				var mysec=mytoday.getSeconds()
-				mysec=checktime(mysec)
-				var mydate=mytoday.getDate()
-				mydate=checktime(mydate)
-				var mymonth=mytoday.getMonth()+1
-				mymonth=checktime(mymonth)
-				var myyear=mytoday.getFullYear()
-				document.getElementById('showtime').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear
-				setTimeout('show_time()',1000)
+				var mytoday=new Date();			//узнаёт текущую дату и время
+				var myhours=mytoday.getHours();	//текущее время в часах
+				myhours=checktime(myhours);
+				var mymin=mytoday.getMinutes();	//в минутах
+				mymin=checktime(mymin);
+				var mysec=mytoday.getSeconds();	//в секундах
+				mysec=checktime(mysec);
+				var mydate=mytoday.getDate();	//день (1..31)
+				mydate=checktime(mydate);
+				var mymonth=mytoday.getMonth()+1;	//месяц (0..11)
+				mymonth=checktime(mymonth);
+				var myyear=mytoday.getFullYear();	//год
+					//вывод
+				document.getElementById('showtime').innerHTML=myhours+':'+mymin+':'+mysec+' '+mydate+'/'+mymonth+'/'+myyear;
+					//каждую секунду обновляется время
+				setTimeout('show_time()',1000);
 			}
+			/*Функция проверяет число на количество цифр. Если одна цифра, то добавляет к началу числа ноль*/
 			function checktime(i)
 			{
 				if(i<10)
-					i='0'+i
-				return i
+					i='0'+i;
+				return i;
 			}
+			/*Функция вызывается при загрузке страницы*/
+			function forStart()
+			{
+				show_time();	//Показывает время
+						//Определяет размер изображений в галереи
+				var kw,kh;
+				var size=8;			//во сколько раз уменьшится изображение относительно экрана
+				for(var i=0;i<kolPictureInGalery;i++)
+				{
+					var obj=document.getElementById('img'+i);
+					kw=obj.width / (window.innerWidth / size);
+					kh=obj.height / (window.innerWidth / size);
+					if(kh>kw)
+						kw=kh;
+					obj.width=obj.width / kw;
+					obj.height=obj.height / kw;
+				}
+			}
+			/*Функция определяет количество дней до дня рождения группы*/
 			function DaysToBirthday()
 			{
-				var today=new Date()	//0..11 - месяца
-				birthday=new Date(1973,11,29,23,59,59,999)
-				birthday.setFullYear(today.getFullYear())
-				msPerDay=24*60*60*1000
-				if((birthday.getTime()-today.getTime())/msPerDay<0)
-					birthday.setFullYear(today.getFullYear()+1)
-				daysLeft=(birthday.getTime()-today.getTime())/msPerDay
-				daysLeft=Math.round(daysLeft)
-				var text=""
+				var today=new Date();	//определяем текущую дату
+				var birthday=new Date(1973,11,31,23,59,59,999);		//устанавливаем дату рождения группы
+				birthday.setFullYear(today.getFullYear());		//устанавливаем нынешний год дате, до которой будем узнавать разницу
+				msPerDay=24*60*60*1000;							//количество миллисекунд в дне
+				if((birthday.getTime() - today.getTime()) / msPerDay < 0)	//проверка на условие, если дата уже прошла, то устанавливаем следующий го
+					birthday.setFullYear(today.getFullYear()+1);
+				daysLeft=(birthday.getTime()-today.getTime())/msPerDay;	//определяем разницу в днях
+				daysLeft=Math.round(daysLeft);							//округляем
+				var text="";
 				if(daysLeft%10==1)
-					text=" день"
+					text=" день";
 				else if(daysLeft%10<=4)
-					text=" дня"
+					text=" дня";
 				else
-					text=" дней"
-				document.write("До дня рождения группы осталось "+daysLeft+text)
+					text=" дней";
+									//выводим
+				document.write("До дня рождения группы или до Нового Года осталось "+daysLeft+text);
 			}
+			/*Функция определяет день недели, когда создалась группа*/
 			function DayOfBirthday()
 			{
-				var weekday=new Array("воскресенье","понедельник","вторник","среду","четверг","пятницу","субботу");
-				if(birthday.getDay==2)
-					document.write("во "+weekday[birthday.getDay()])
-				else
-					document.write("в "+weekday[birthday.getDay()])
+				var birthday=new Date(1973,11,31,23,59,59,999);
+				switch(birthday.getDay())
+				{				//отчёт начинается с 0
+					case 0:
+						document.write("в воскресенье");
+					break;
+					case 1:
+						document.write("в понедельник");
+					break;
+					case 2:
+						document.write("во вторник");
+					break;
+					case 3:
+						document.write("в среду");
+					break;
+					case 4:
+						document.write("в четверг");
+					break;
+					case 5:
+						document.write("в пятницу");
+					break;
+					default:
+						document.write("в субботу");
+					
+				}
 			}
-			var nameuser=""
+			/*var nameuser="";
 			function disp_prompt()
 			{
-				nameuser=prompt("Пожалуйста, введите своё имя:","Мартин Гарднер")
-				var r=confirm("Вы хотите, чтобы ваше имя присутствовало на сайте?")
+				nameuser=prompt("Пожалуйста, введите своё имя:","Мартин Гарднер");
+				var r=confirm("Вы хотите, чтобы ваше имя присутствовало на сайте?");
 				if(r==true)
 				{
-					show_name()
+					show_name();
 				}
+				alert();
 			}
+			function regist1()
+			{
+				alert('');
+			}*/
+			/*Функция показывает имя пользователя, как бы приветствуя его*/
 			function show_name()
 			{
-				if(nameuser!=null && nameuser!="" && nameuser!=" ")
+				if(nameuser!=null && nameuser!="" && nameuser!=" ")	//если строка не пустая
 				{
-					document.getElementById('showname').innerHTML=nameuser+", "
+					document.getElementById('showname').innerHTML=nameuser+", ";
 				}
 			}
-			var contents=new Array('Content1','Content2','Content3','Content4')
-			var ncont=4;
+			/*Функция меняет боковые картинки произвольным образом*/
+			function changeWallPicture()
+			{
+				var num=Math.floor(Math.random()*(kolPictureInGalery+1));	//меняет произвольно
+				var timer1,timer2;									//создаём два таймера
+				var step=0.05;										//шаг, которым будем менять прозрачность
+				var dt=40;											//шаг во времени в миллисекундах
+				wallLeft.style.opacity=1;							//присваиваем значение прозрачности 0% (значение по умолчанию javascript не воспринимает)
+				timer1=setInterval(									//запускаем первый таймер, который постепенно скрывает предыдущую картинку
+					function()
+					{
+						var op=parseFloat(wallLeft.style.opacity);	//записываем в переменную значение прозрачности
+						if(op>step)									//выполняем, пока не станет полностью прозрачным
+						{											//(полностью ноль op не принимает почему-то)
+							op-=step;								//увеличиваем прозрачность
+							wallLeft.style.opacity=op;				//присваиваем эту прозрачность изображениям
+							wallRight.style.opacity=op;
+						}
+						else										//когда изображения стали прозрачными, меняем их на новые
+						{
+							if(num==kolPictureInGalery)
+								wallLeft.src="img/ACDC3.png";
+							else
+								wallLeft.src="img/"+num+".jpg";
+							wallRight.src=wallLeft.src;
+							
+							clearInterval(timer1);					//выключаем первый таймер
+							timer2=setInterval(						//включаем второй
+								function()
+								{									//записываем в переменную значение прозрачности
+									var op=parseFloat(wallLeft.style.opacity);
+									if(op<1)						//выполняем, пока не станет вновь непрозрачным
+									{
+										op+=step;					//уменьшаем прозрачность
+										wallLeft.style.opacity=op;	//присваиваем эту прозрачность изображениям
+										wallRight.style.opacity=op;
+									}
+									else
+									{
+										clearInterval(timer2);		//останавливаем таймер
+									}
+								},dt);
+						}
+					},dt);
+				wallLeft.style.opacity=1;							//устанавливаем непрозрачность изображения
+				wallRight.style.opacity=1;
+			}
+			
+			var contents=new Array('main','history','galery','alboms','audio','video');
 			function toggle(sDivId)
 			{
-				var oDiv=document.getElementById(sDivId)
-				if(sDivId.length==contents[0].length && oDiv.style.display!="block" || sDivId.length>contents[0].length)
+				var oDiv=document.getElementById(sDivId);
+				var shab=/(audio)*(video)*\d+/;
+				if(shab.test(sDivId)==true)
+					oDiv.style.display=(oDiv.style.display=="none")?"block":"none";
+				else if(oDiv.style.display!="block")
 				{
-					oDiv.style.display=(oDiv.style.display=="none")?"block":"none"
-					oDiv=document.getElementById('ContentR')
-					if(sDivId==contents[0])	//важен первый элемент
-						oDiv.style.display="none"
-					else
-						oDiv.style.display="block"
-					if(sDivId.length==contents[0].length)//неважно с каким сравнивать длину
-						for(var i=0;i<ncont;i++)
-							if(contents[i]!=sDivId)
-							{
-								oDiv=document.getElementById(contents[i])
-								oDiv.style.display="none"
-							}
+					oDiv.style.display="block";
+					for(var i=0;i<contents.length;i++)
+						if(contents[i]!=sDivId)
+						{
+							oDiv=document.getElementById(contents[i]);
+							oDiv.style.display="none";
+						}
+					changeWallPicture();
 				}
+			}
+			
+			function changeButton(idButton,num)
+			{
+				var Button=document.getElementById(idButton);
+				Button.src="img/"+idButton+num+".png";
+			}
+			function zoomImg(num)
+			{
+				var dx=Math.floor(window.innerWidth / 4.6);
+				var dy=Math.floor(window.innerHeight / 6.4);
+				var imgChoose=document.getElementById("img"+num);
+				var width=window.innerWidth-2*dx;
+				var kw=width/imgChoose.width;
+				var height=window.innerHeight-2*dy;
+				var kh=height/imgChoose.height;
+																		//left,top - строки, width,height - числа!!!
+				if(kh<kw)
+					kw=kh;
+				zoom.src="img/"+num+".jpg";
+				zoom.style.visibility="visible";
+				zoom.width=Math.floor(imgChoose.width * kw);
+				zoom.height=Math.floor(imgChoose.height * kw);
+				zoom.style.left=((window.innerWidth - zoom.width) / 2)+"px";
+				zoom.style.top=((window.innerHeight - zoom.height) / 2)+"px";
+				
+				zoomFon.style.visibility="visible";
+				zoomFon.style.left=0;
+				zoomFon.style.top=0;
+				zoomFon.width=window.innerWidth;
+				zoomFon.height=window.innerHeight;
+				
+				var size=4;			//обратная пропорциональность
+				var left=(parseInt(zoom.style.left)+parseInt(zoom.width));
+				width=window.innerWidth / 4 /*- left*/;
+				
+				krest.style.visibility="visible";
+				krest.width=Math.floor(width / size);
+				krest.height=krest.width;
+				width=window.innerWidth - left;
+				krest.style.left=Math.floor(left + (width - krest.width) / 2) + "px";
+				krest.style.top=Math.floor((parseInt(zoom.style.top) - krest.height) / 2) + "px";
+				
+				height=Math.floor(zoom.height / size);
+				
+				imgLeft.style.visibility="visible";
+				imgLeft.width=height;
+				imgLeft.height=height;
+				imgLeft.style.left=Math.floor((parseInt(zoom.style.left) - height) / 2) + "px";
+				imgLeft.style.top=Math.floor(parseInt(zoom.style.top) + (zoom.height - height) / 2) + "px";
+				
+				left=(parseInt(zoom.style.left)+parseInt(zoom.width));
+				width=window.innerWidth - left;
+				height=Math.floor(zoom.height / size);
+				
+				imgRight.style.visibility="visible";
+				imgRight.width=height;
+				imgRight.height=height;
+				imgRight.style.left=Math.floor(left + (width - height) / 2) + "px";
+				imgRight.style.top=Math.floor(parseInt(zoom.style.top) + (zoom.height - height) / 2) + "px";
+			}
+			function closePicture()
+			{
+				zoom.style.visibility="hidden";
+				zoom.src="";
+				zoomFon.style.visibility="hidden";
+				krest.style.visibility="hidden";
+				imgLeft.style.visibility="hidden";
+				imgRight.style.visibility="hidden";
+			}
+			function next_prev(i)
+			{
+				var shab1=/\d+\.jpg$/;
+				var shab2=/\d+/;
+				var num=(shab2.exec(shab1.exec(zoom.src)));
+				//var imgChoose=document.getElementById("img" + num);
+				if(!i)		//предыдущий
+				{
+					if(num==0)
+						num=kolPictureInGalery-1;
+					else
+						num--;
+				}
+				else
+				{
+					if(num==kolPictureInGalery-1)
+						num=0;
+					else
+						num++;
+				}
+				zoom.src="";
+				zoomImg(num);
 			}
 		</script>
 	</head>
-	<body onload="show_time()">
+	<body onload="forStart()">
+		<div class="regist">
+			<!--<input type="button" onclick="regist1()" value="Регистрация">//-->
+			<p style="color:green;font-size:2em;cursor:pointer;" onclick="reigist1()">Регистрация</p>
+		</div>
+		
 		<div class="container row">
 			<div class="row">
 				<img src="img/gitara21.png" class="col span_4">
@@ -120,64 +317,131 @@
 			</div>
 			
 			<div class="row">
-				<p class="date"><script type="text/javascript">	DaysToBirthday()</script></p>
+				<ul id="nav">
+					<li>
+						<p onclick="toggle('main')">Главная</a>
+					</li>
+					<li>
+						<p>О группе</a>
+						<ul style="list-style:none">
+							<li><p onclick="toggle('history')">История создания</a></li>
+							<li><p onclick="toggle('galery')">Галерея</a></li>
+							<li><p onclick="toggle('alboms')">Альбомы</a></li>
+						</ul>
+					</li>
+					<li>
+						<p>Медиа</a>
+						<ul>
+							<li><p onclick="toggle('audio')">Аудиозаписи</a></li>
+							<li><p onclick="toggle('video')">Видео</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 			
 			<div class="row">
-				<div class="col span_12" style="text-align:center"><input type="button" onclick="disp_prompt()" value="Войти под именем"></div>
+				<img src="img/ACDC3.png" id="wallLeft" class="col span_4">
+				<div style="margin-top:0px" class="col span_4">	
+					<div id="main">
+						<div class="text">
+							<p style="display:inline">
+							<script type="text/javascript">Welcometohell();</script></p><p style="display:inline" id="showname"/>
+							<p class="text" style="display:inline">мы рады вас приветствовать на неофициальном сайте группы AC/DC. 
+							Здесь представлена информация о создании группы, дискография и концерты.</p>
+						</div>
+					</div>
+					
+					<div id="history" style="display:none">
+						<h2 class="a1">Название</h2>
+						<p class="text">«AC/DC» — аббревиатура от «ток переменный/ток постоянный» 
+							(англ. «alternating current/direct current») .Старшая сестра Малколма и Ангуса Янгов, Маргарет предложила 
+							название для группы после того, как увидела надпись «AC/DC» на задней стороне швейной машинки (кстати, 
+							именно Маргарет предложила Ангусу выступать на сцене в школьной форме).
+						</p>
+						<h2 class="a1">История создания группы</h2>
+						<p class="text">Братья Ангус (родился 31 марта 1955 года; по требованию компании Atlantic Records годом 
+							рождения Ангуса официально указывался неверный 1959), Малколм (родился 6 января 1953 года) и Джордж Янг 
+							(George Young) родились в Глазго (Шотландия), но в 1963 году вместе с большей частью семьи уехали в Сидней. 
+							Джордж начал играть на гитаре первым и стал членом самой успешной австралийской группы 1960-х, 
+							The Easybeats. Это была первая местная рок-группа, которая выпустила хит международного масштаба — 
+							«Friday on My Mind» в 1966 году. Малколм вскоре последовал по стопам брата, став гитаристом группы из 
+							Ньюкасла The Velvet Underground (не следует путать с нью-йоркским коллективом The Velvet Underground).
+						</p>
+						<h2 class="a1">Первое выступление</h2>
+						<p class="text">К братьям-гитаристам Малколму (он и инициировал группу) и Ангусу Янгам в ноябре 1973-го 
+							добавились вокалист Дейв Эванс (англ. Dave Evans), бас-гитарист Ларри Ван Кридт (англ. Larry van Kriedt) и 
+							барабанщик Колин Берджес (англ. Colin Burgess). Дебют квинтета состоялся 
+							<strong style="color:#0f0;font-style:italic"><script type="text/javascript">DayOfBirthday()</script>
+							</strong> 30 декабря 1973 года в сиднейском баре Chequers. С этого дня наш сайт празднует день 
+							рождения группы AC/DC.
+						</p>
+					</div>
+					
+					<div id="galery" style="display:none">
+						<table align="center">
+						<tr>
+							<td><p><img src="img/0.jpg" id="img0" class="imgSmall" onclick="zoomImg(0)"></p></td>
+							<td><p><img src="img/1.jpg" id="img1" class="imgSmall" onclick="zoomImg(1)"></p></td>
+						</tr>
+						<tr>
+							<td><p><img src="img/2.jpg" id="img2" class="imgSmall" onclick="zoomImg(2)"></p></td>
+							<td><p><img src="img/3.jpg" id="img3"  class="imgSmall" onclick="zoomImg(3)"></p></td>
+						</tr>
+						<tr>
+							<td><p><img src="img/4.jpg" id="img4" class="imgSmall" onclick="zoomImg(4)"></p></td>
+							<td><p><img src="img/5.jpg" id="img5" class="imgSmall" onclick="zoomImg(5)"></p></td>
+						</tr>
+						<tr>
+							<td><p><img src = "img/6.jpg" id="img6" class = "imgSmall" Onclick = "zoomImg(6)"></p></td>
+							<td><p><img src = "img/7.jpg" id="img7" class = "imgSmall" Onclick = "zoomImg(7)"></p></td>
+						</tr>
+						<tr>
+							<td><p><img src = "img/8.jpg" id="img8" class = "imgSmall" Onclick = "zoomImg(8)"></p></td>
+							<!--<td><p><img src = "" id="img9" class = "imgSmall" Onclick = "zoomImg(9)"></p></td>//-->
+						</tr>
+						</table>
+						<img src="" id="zoomFon" class="imgZoom">
+						<img src="" id="zoom" class="imgZoom">
+						<img src="img/krest1.png" id="krest" class="imgZoom" onclick="closePicture()" onmousedown="changeButton('krest',4)" onmouseover="changeButton('krest',3)" onmouseout="changeButton('krest',1)" onmouseup="changeButton('krest',3)">
+						<img src="img/imgLeft1.png" id="imgLeft" class="imgZoom" onclick="next_prev(0)" onmousedown="changeButton('imgLeft',12)" onmouseover="changeButton('imgLeft',11)" onmouseout="changeButton('imgLeft',1)" onmouseup="changeButton('imgLeft',11)">
+						<img src="img/imgRight2.png" id="imgRight" class="imgZoom" onclick="next_prev(1)" onmousedown="changeButton('imgRight',22)" onmouseover="changeButton('imgRight',21)" onmouseout="changeButton('imgRight',2)" onmouseup="changeButton('imgRight',21)">
+					</div>
+					
+					<div id="alboms" style="display:none">
+					
+					</div>
+					
+					<div id="audio" style="display:none">
+						<p class="over" onclick="toggle('audio1')">AC/DC - Back To Black</p>
+						<audio controls id="audio1" style="display:none"> 
+							<source src="audio/music.ogg" type='audio/ogg; codecs=vorbis'>
+							<source src="audio/music.mp3" type="audio/mpeg">
+							<source src="audio/music.wav" type="audio/wav">
+						</audio>
+						<p class="over" onclick="toggle('audio2')">AC/DC - Ruff Stuff</p>
+						<audio controls id="audio2" style="display:none"> 
+							<source src="audio/acdc - ruff stuff.ogg" type='audio/ogg; codecs=vorbis'>
+							<source src="audio/acdc - ruff stuff.mp3" type="audio/mpeg">
+							<source src="audio/acdc - ruff stuff.wav" type="audio/wav">
+						</audio>
+					</div>
+					
+					<div id="video" style="display:none">
+						<p class="over" onclick="toggle('video1')">AC/DC - Back To Black</p>
+						<video width="400" height="300" controls poster="video/back.jpg" id="video1" style="display:none">
+							<source src="video/back.avi" type='video/avi; codecs="theora, vorbis"'>
+							<source src="video/back.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+							<source src="video/back.webm" type='video/webm; codecs="vp8, vorbis"'>
+							<source src="video/back.ogv" type='video/ogg; codecs="theora, vorbis"'>
+						</video>
+					</div>
+				</div>
+				<img src="img/ACDC3.png" id="wallRight" class="col span_4">
 			</div>
 			
 			<div class="row">
-				<div class="col span_4" onclick="toggle('Content2')"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">История создания</h2></div>
-				<div class="col span_4" onclick="toggle('Content3')"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Дискография</h2></div>
-				<div class="col span_4" onclick="toggle('Content4')"><h2 id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Концерты</h2></div>
-			</div>
-
-			<div class="row">
-				<img src="img/ACDC3.png" class="col span_4">
-				<div class="col span_4" id="Content1">
-					<div class="text"><p class="text" style="display:inline"><script type="text/javascript">Welcometohell();</script></p><p class="text" style="display:inline" id="showname"/><p class="text" style="display:inline">мы рады вас приветствовать на неофициальном сайте группы AC/DC. Здесь представлена информация о создании группы, дискография и концерты.</p></div>
-				</div>
-				<div class="col span_4" id="Content2" style="display:none">
-					<h2 class="a1">Название</h2>
-					<p class="text">«AC/DC» — аббревиатура от «ток переменный/ток постоянный» (англ. «alternating current/direct current») .Старшая сестра Малколма и Ангуса Янгов, Маргарет предложила название для группы после того, как увидела надпись «AC/DC» на задней стороне швейной машинки (кстати, именно Маргарет предложила Ангусу выступать на сцене в школьной форме).</p>
-					<h2 class="a1">История создания группы</h2>
-					<p class="text">Братья Ангус (родился 31 марта 1955 года; по требованию компании Atlantic Records годом рождения Ангуса официально указывался неверный 1959), Малколм (родился 6 января 1953 года) и Джордж Янг (George Young) родились в Глазго (Шотландия), но в 1963 году вместе с большей частью семьи уехали в Сидней. Джордж начал играть на гитаре первым и стал членом самой успешной австралийской группы 1960-х, The Easybeats. Это была первая местная рок-группа, которая выпустила хит международного масштаба — «Friday on My Mind» в 1966 году. Малколм вскоре последовал по стопам брата, став гитаристом группы из Ньюкасла The Velvet Underground (не следует путать с нью-йоркским коллективом The Velvet Underground).</p>
-					<h2 class="a1">Первое выступление</h2>
-					<p class="text">К братьям-гитаристам Малколму (он и инициировал группу) и Ангусу Янгам в ноябре 1973-го добавились вокалист Дейв Эванс (англ. Dave Evans), бас-гитарист Ларри Ван Кридт (англ. Larry van Kriedt) и барабанщик Колин Берджес (англ. Colin Burgess). Дебют квинтета состоялся <script type="text/javascript">DayOfBirthday()</script> 30 декабря 1973 года в сиднейском баре Chequers. С этого дня наш сайт празднует день рождения группы AC/DC.</p>
-				</div>
-				<div class="col span_4" id="Content3" style="display:none">
-					<p class="over" onclick="toggle('Content31')">AC/DC - Back To Black</p>
-					<audio controls id="Content31" style="display:none"> 
-						<source src="audio/music.ogg" type='audio/ogg; codecs=vorbis'>
-						<source src="audio/music.mp3" type="audio/mpeg">
-						<source src="audio/music.wav" type="audio/wav">
-					</audio>
-					<p class="over" onclick="toggle('Content32')">AC/DC - Ruff Stuff</p>
-					<audio controls id="Content32" style="display:none"> 
-						<source src="audio/acdc - ruff stuff.ogg" type='audio/ogg; codecs=vorbis'>
-						<source src="audio/acdc - ruff stuff.mp3" type="audio/mpeg">
-						<source src="audio/acdc - ruff stuff.wav" type="audio/wav">
-					</audio>
-				</div>
-				<div class="col span_4" id="Content4" style="display:none">
-					<p class="over" onclick="toggle('Content41')">AC/DC - Back To Black</p>
-					<video width="400" height="300" controls poster="video/back.jpg" id="Content41" style="display:none">
-						<source src="video/back.avi" type='video/avi; codecs="theora, vorbis"'>
-						<source src="video/back.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-						<source src="video/back.webm" type='video/webm; codecs="vp8, vorbis"'>
-						<source src="video/back.ogv" type='video/ogg; codecs="theora, vorbis"'>
-					</video>
-				</div>
-				<img src="img/ACDC3.png" class="col span_4">
-			</div>
-			
-			<div class="row">
-				<p id="showtime" class="date"/>
-			</div>
-			
-			<div class="row">
-				<div class="col span_12" onclick="toggle('Content1')" id="ContentR" style="display:none"><p id="bl" onmousedown="this.style.borderStyle='groove';" onmouseup="this.style.borderStyle='ridge';">Вернуться на главную страницу</p></div>
+				<p id="showtime" style="" class="date"></p>
+				<p id="showtime" class="date"><script type="text/javascript">	DaysToBirthday()</script></p>
 			</div>
 		</div>
 	</body>
